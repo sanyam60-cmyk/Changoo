@@ -52,7 +52,6 @@ button {
 #noBtn {
     background: white;
     color: #ff004f;
-    position: absolute;
 }
 
 .heart {
@@ -98,15 +97,23 @@ button {
 <script>
 
 let noCount = 0;
+let yesSize = 20;
 
 function handleNo() {
+
     noCount++;
 
+    const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const message = document.getElementById("message");
 
+    // Make YES button bigger
+    yesSize += 8;
+    yesBtn.style.fontSize = yesSize + "px";
+    yesBtn.style.padding = (yesSize/2) + "px " + yesSize + "px";
+
     const funnyTexts = [
-        "Are you serious? 😏",
+        "Are you sure? 😏",
         "Think again sweetheart 😜",
         "Wrong choice 😂",
         "Love is destiny 💘",
@@ -115,6 +122,7 @@ function handleNo() {
 
     message.innerText = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
 
+    // After 10 NO clicks → turn into YES
     if (noCount >= 10) {
         noBtn.innerText = "YES 💖";
         noBtn.onclick = sayYes;
@@ -123,11 +131,12 @@ function handleNo() {
 }
 
 function sayYes() {
+
     document.body.innerHTML = `
         <div style="text-align:center; color:white; padding:20px;">
             <h1>YAYYYY CHANGO 😭💖</h1>
             <p>You just made me the happiest person alive 😌💕</p>
-            <img src="chango2.jpg" style="width:100%; border-radius:20px; margin-top:15px;">
+            <img src="Chango2.jpg.jpeg" style="width:100%; border-radius:20px; margin-top:15px;">
         </div>
     `;
 
